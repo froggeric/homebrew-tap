@@ -5,16 +5,42 @@
 class Localvision < Formula
   desc "Local vision-language model tools for text-only coding LLMs, backed by a local llama.cpp subprocess."
   homepage "https://github.com/froggeric/llm/tree/main/mcp/localvision"
-  version "0.3.0"
+  version "0.4.0"
   license "PolyForm-Noncommercial-1.0.0"
-  depends_on :macos
 
-  if Hardware::CPU.arm?
-    url "https://github.com/froggeric/llm/releases/download/v0.3.0/localvision_darwin-arm64.tar.gz"
-    sha256 "353f28318d36435106637003343771d23ae9b078651d0312e33a04f72019e263"
+  on_macos do
+    if Hardware::CPU.intel?
+      url "https://github.com/froggeric/llm/releases/download/v0.4.0/localvision_darwin-amd64.tar.gz"
+      sha256 "3797531daa67a33d88f4981e9649db2f4e3ae6e4b6465bbc77a2d25da1cbd80d"
 
-    define_method(:install) do
-      bin.install "localvision"
+      define_method(:install) do
+        bin.install "localvision"
+      end
+    end
+    if Hardware::CPU.arm?
+      url "https://github.com/froggeric/llm/releases/download/v0.4.0/localvision_darwin-arm64.tar.gz"
+      sha256 "e74a3ddc90617a392e25e103cf0ad939525168796ee13959314a1b4713ecc09e"
+
+      define_method(:install) do
+        bin.install "localvision"
+      end
+    end
+  end
+
+  on_linux do
+    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
+      url "https://github.com/froggeric/llm/releases/download/v0.4.0/localvision_linux-amd64.tar.gz"
+      sha256 "80e4dd67919164c363de8603989283bd3c12c171c6f2d312709d63d50b2c60da"
+      define_method(:install) do
+        bin.install "localvision"
+      end
+    end
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/froggeric/llm/releases/download/v0.4.0/localvision_linux-arm64.tar.gz"
+      sha256 "d2551e50c579ac48f9f57c8125112050ff1e8b5bc7a714af57aaf1713da8c8bd"
+      define_method(:install) do
+        bin.install "localvision"
+      end
     end
   end
 
