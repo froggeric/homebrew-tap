@@ -5,13 +5,13 @@
 class Localvision < Formula
   desc "Local vision-language model tools for text-only coding LLMs, backed by a local llama.cpp subprocess."
   homepage "https://github.com/froggeric/llm/tree/main/mcp/localvision"
-  version "0.2.1"
+  version "0.2.2"
   license "PolyForm-Noncommercial-1.0.0"
   depends_on :macos
 
   if Hardware::CPU.arm?
-    url "https://github.com/froggeric/llm/releases/download/v0.2.1/localvision_darwin-arm64.tar.gz"
-    sha256 "b465663e6a926bf75a44a3ecc45a6b4bdcc202891e434f443183e52dfca1fcc9"
+    url "https://github.com/froggeric/llm/releases/download/v0.2.2/localvision_darwin-arm64.tar.gz"
+    sha256 "fd68bb12090af7972e6c046f34dfb62b586d6f9abe6bd1502a81f10b43f14cea"
 
     define_method(:install) do
       bin.install "localvision"
